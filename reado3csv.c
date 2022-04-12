@@ -7,22 +7,16 @@ char *cat_wang(char *str1,char *str2)
 {
  char *s1;
  char *s2;
+ char *sums;
+ sums=(char *)malloc(14*sizeof(char));
  s1=str1;
  s2=str2;
- while(*s1){
- s1++;
- }
- *s1=',';
- s1++;
- while(*s2){
- *s1=*s2;
- s1++;
- s2++;
- }
- *s1=',';
- s1++;
- *s1='\0';
- return str1;
+ int i;
+ for(i=0;i<6;i++){sums[i]=s1[i];}
+ sums[6]=',';
+ for(i=7;i<13;i++){sums[i]=s2[i-7];}
+ sums[13]=',';
+ return sums;
 }
 char *savename(char *s,char *d)
 {
@@ -70,6 +64,7 @@ while(fgets(line,sizeof(line),fp)){
     temp=savename(file_c.outname,temp);
     break;}
     }
+  file_c.pubtime[10]='_';
   outo3=fopen(temp,"a");
   if(outo3!=NULL){printf("open successful\n");}
 // fseek(outo3,0,SEEK_END);
